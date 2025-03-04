@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chúc Mừng 8/3 - Nhi</title>
+  <style>
+    /* Reset cơ bản */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Arial', sans-serif;
+    }
+    /* Background Gradient & căn giữa */
+    body {
+      background: linear-gradient(120deg, #ff9a9e, #fad0c4, #ffdde1);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      position: relative;
+      padding: 20px;
+    }
+    /* Hiệu ứng chữ lấp lánh */
+    h1 {
+      font-size: 3em;
+      color: #fff;
+      text-shadow: 0 0 20px rgba(255, 107, 129, 0.8);
+      animation: glow 2s infinite alternate;
+      margin-bottom: 20px;
+    }
+    @keyframes glow {
+      from { text-shadow: 0 0 20px #ff6b81; }
+      to { text-shadow: 0 0 30px #ffdde1; }
+    }
+    /* Đoạn văn */
+    p {
+      font-size: 1.5em;
+      color: #fff;
+      margin: 20px;
+    }
+    /* Ảnh trung tâm với hiệu ứng bounce */
+    .image-container img {
+      width: 250px;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+      animation: bounce 1.5s infinite alternate;
+    }
+    @keyframes bounce {
+      from { transform: translateY(0); }
+      to { transform: translateY(-20px); }
+    }
+    /* Nút phát nhạc */
+    .music-button {
+      margin-top: 20px;
+      padding: 12px 24px;
+      font-size: 1.2em;
+      background-color: #ff6b81;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+      transition: background-color 0.3s;
+    }
+    .music-button:hover {
+      background-color: #ff4757;
+    }
+    /* Phong cách bong bóng */
+    .balloon {
+      position: absolute;
+      width: 50px;
+      height: 70px;
+      background-color: red;
+      border-radius: 50%;
+      animation: float 5s infinite ease-in-out;
+    }
+    @keyframes float {
+      from { transform: translateY(100vh) scale(1); opacity: 1; }
+      to { transform: translateY(-10vh) scale(1.2); opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <h1>🌸 Chúc Mừng 8/3, Nhi! 💖</h1>
+  <p>Chúc Nhi có một ngày 8/3 thật rực rỡ, tràn đầy niềm vui và hạnh phúc!</p>
+  
+  <div class="image-container">
+    <img src="https://source.unsplash.com/250x250/?girl,happy" alt="Hình ảnh Nhi">
+  </div>
+  
+  <button class="music-button" onclick="playMusic()">🎶 Phát Nhạc</button>
+  
+  <!-- Audio element: sử dụng bản "Tenderness" nhẹ nhàng, tràn đầy cảm xúc -->
+  <audio id="bg-music" loop muted>
+    <source src="https://www.bensound.com/bensound-music/bensound-tenderness.mp3" type="audio/mpeg">
+    Trình duyệt của bạn không hỗ trợ audio.
+  </audio>
+  
+  <script>
+    // Hàm bật/tắt nhạc nền
+    function playMusic() {
+      var music = document.getElementById("bg-music");
+      if (music.paused) {
+        music.muted = false;  // Bỏ mute để cho nhạc phát
+        music.play().catch(function(error) {
+          console.log("Lỗi khi phát nhạc:", error);
+        });
+      } else {
+        music.pause();
+      }
+    }
+    
+    // Hàm tạo bong bóng bay
+    function createBalloon() {
+      var balloon = document.createElement("div");
+      balloon.classList.add("balloon");
+      
+      // Chọn màu ngẫu nhiên cho bong bóng
+      var colors = ["#ff4757", "#2ed573", "#1e90ff", "#ff7f50", "#a29bfe"];
+      balloon.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+      
+      // Vị trí ngẫu nhiên theo chiều ngang
+      balloon.style.left = Math.random() * window.innerWidth + "px";
+      
+      // Đặt thời gian animation ngẫu nhiên
+      balloon.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      
+      document.body.appendChild(balloon);
+      
+      // Xoá bong bóng sau 5 giây
+      setTimeout(function() {
+        balloon.remove();
+      }, 5000);
+    }
+    
+    // Tạo bong bóng mỗi 500ms
+    setInterval(createBalloon, 500);
+  </script>
+</body>
+</html>
